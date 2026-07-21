@@ -1,7 +1,9 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Constant;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
@@ -35,5 +37,25 @@ public class CategoryServiceImpl implements CategoryService {
         PageHelper.startPage(cpq.getPage(), cpq.getPageSize());
        Page<Category> page =categoryMapper.query(cpq);
         return new PageResult(page.getTotal(),page.getResult());
+    }
+
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        Category category=new Category();
+        category.setId(id);
+        category.setStatus(status);
+        categoryMapper.update(category);
+    }
+
+    @Override
+    public void insert(CategoryDTO categoryDTO) {
+        Category category=new Category();
+        BeanUtils.copyProperties(categoryDTO,category);
+        category.setStatus(StatusConstant.ENABLE);
+        category.setCreateTime(LocalDateTime.now());
+        category.setUpdateTime(LocalDateTime.now());
+        category.setCreateUser(BaseContext.getCurrentId());
+        category.setUpdateUser(BaseContext.getCurrentId());
+        categoryMapper.insert(category);
     }
 }

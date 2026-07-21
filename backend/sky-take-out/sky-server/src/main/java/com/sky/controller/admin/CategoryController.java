@@ -33,6 +33,20 @@ public class CategoryController {
     PageResult pageResult =categoryService.query(cpq);
     return Result.success(pageResult);
 }
+@PostMapping("/status/{status}")
+    public Result startOrStop(@PathVariable Integer status,Long id){
+    log.info("启用或禁用分类:{}{}",status,id);
+        categoryService.startOrStop(status,id);
+    return Result.success();
+}
+@PostMapping
+    public Result insert(@RequestBody CategoryDTO categoryDTO){
+
+    categoryService.insert(categoryDTO);
+
+    return Result.success();
+
+}
 
 
 
