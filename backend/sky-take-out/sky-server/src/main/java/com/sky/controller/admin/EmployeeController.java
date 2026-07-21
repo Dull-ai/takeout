@@ -87,10 +87,25 @@ public class EmployeeController {
         return Result.success(result);
 
 }
+@PostMapping("/status/{status}")
+    public Result startOrStop(@PathVariable Integer status,Long id){
+        log.info("启用禁用员工账号:{}{}",status,id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
+}
+@GetMapping("/{id}")
+public Result<Employee> queryById(@PathVariable Long id){
 
+       Employee employee=employeeService.queryById(id);
 
+        return Result.success(employee);
+}
+@PutMapping
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
 
-
+        employeeService.update(employeeDTO);
+        return Result.success();
+}
 
 
 }
