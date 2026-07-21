@@ -3,7 +3,6 @@ package com.sky.controller.admin;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.entity.Category;
-import com.sky.interceptor.JwtTokenAdminInterceptor;
 import com.sky.properties.JwtProperties;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
@@ -11,6 +10,8 @@ import com.sky.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/category")
@@ -41,12 +42,25 @@ public class CategoryController {
 }
 @PostMapping
     public Result insert(@RequestBody CategoryDTO categoryDTO){
-
     categoryService.insert(categoryDTO);
+    return Result.success();
+}
+@DeleteMapping
+    public Result deleteById(Long id){
+
+
+    categoryService.deleteById(id);
 
     return Result.success();
-
 }
+@GetMapping("/list")
+    public Result<List<Category>> queryByType(Integer type){
+    log.info("根据类型查找:{}",type);
+   List<Category> category=categoryService.queryByType(type);
+    return Result.success(category);
+}
+
+
 
 
 

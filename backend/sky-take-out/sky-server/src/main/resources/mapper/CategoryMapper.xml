@@ -45,4 +45,13 @@
     </where>
 order by create_Time desc
     </select>
+    <select id="queryByType" resultType="com.sky.entity.Category">
+        select * from sky_take_out.category
+        <where>
+            <if test="type!=null and type!=''">
+                type=#{type}
+            </if>
+        </where>
+        order by create_Time desc
+    </select>
 </mapper>

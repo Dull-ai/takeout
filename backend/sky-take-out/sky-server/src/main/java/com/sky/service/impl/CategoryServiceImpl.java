@@ -1,6 +1,5 @@
 package com.sky.service.impl;
 
-import com.github.pagehelper.Constant;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.constant.StatusConstant;
@@ -16,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -57,5 +57,16 @@ public class CategoryServiceImpl implements CategoryService {
         category.setCreateUser(BaseContext.getCurrentId());
         category.setUpdateUser(BaseContext.getCurrentId());
         categoryMapper.insert(category);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+        categoryMapper.deleteById(id);
+    }
+
+    @Override
+    public List<Category> queryByType(Integer type) {
+       return categoryMapper.queryByType(type);
     }
 }
