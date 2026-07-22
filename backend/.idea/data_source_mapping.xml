@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/sky-take-out/sky-server/src/main/java/com/sky/mapper/DishMapper.java" value="cb56eab8-fe67-4ef0-9069-f4710750114c" />
     <file url="file://$PROJECT_DIR$/sky-take-out/sky-server/src/main/java/com/sky/mapper/EmployeeMapper.java" value="cb56eab8-fe67-4ef0-9069-f4710750114c" />
+    <file url="file://$PROJECT_DIR$/sky-take-out/sky-server/src/main/java/com/sky/mapper/SetmealMapper.java" value="cb56eab8-fe67-4ef0-9069-f4710750114c" />
   </component>
 </project>
